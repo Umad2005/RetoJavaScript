@@ -1,96 +1,191 @@
-// ====== ESTADO ======
-const products = [
-    { id: 1, name: "Cuaderno", category: "Escolar", price: 5000, image: "img/Cuaderno.png", description: "Cuaderno de lineas" },
-    { id: 2, name: "Lápiz", category: "Escolar", price: 1000, image: "img/Lapiz.jpg", description: "Lápiz HB" },
-    { id: 3, name: "Bolígrafo", category: "Oficina", price: 2000, image: "img/Boligrafo.jpg", description: "Bolígrafo profesional" },
-    { id: 4, name: "Resaltador", category: "Oficina", price: 2500, image: "img/Resaltador.jpg", description: "Resaltador azul" },
-    { id: 5, name: "Carpeta", category: "Oficina", price: 4000, image: "img/Carpeta.jpg", description: "Carpeta Corporativa" },
-    { id: 6, name: "Borrador", category: "Escolar", price: 800, image: "img/Borrador.png", description: "Borrador Escolar" },
-    { id: 7, name: "Regla", category: "Escolar", price: 1500, image: "img/Regla.jpg", description: "Regla 30cm" },
-    { id: 8, name: "Tijeras", category: "Escolar", price: 3000, image: "img/Tijeras.jpg", description: "Tijeras punta roma" },
-    { id: 9, name: "Marcadores", category: "Arte", price: 8000, image: "img/Marcadores.jpg", description: "Set x12" },
-    { id: 10, name: "Pegante", category: "Escolar", price: 2200, image: "img/Pegante.png", description: "Pegante en barra" },
-    { id: 11, name: "Cartulina", category: "Arte", price: 1200, image: "img/Cartulina.jpg", description: "Cartulina blanca" },
-    { id: 12, name: "Agenda", category: "Oficina", price: 15000, image: "img/Agenda.jpg", description: "Agenda 2026" }
+
+// ====== ESTADO DE LA APLICACIÓN ======
+const productos = [
+
+    {
+        id: 1,
+        nombre: "Cuaderno",
+        categoria: "Escolar",
+        precio: 5000,
+        imagen: "img/Cuaderno.png",
+        descripcion: "Cuaderno de líneas"
+    },
+
+    {
+        id: 2,
+        nombre: "Lapiz",
+        categoria: "Escolar",
+        precio: 1000,
+        imagen: "img/Lapiz.jpg",
+        descripcion: "Lápiz HB"
+    },
+
+    {
+        id: 3,
+        nombre: "Lapicero",
+        categoria: "Oficina",
+        precio: 2000,
+        imagen: "img/Boligrafo.jpg",
+        descripcion: "Bolígrafo profesional"
+    },
+
+    {
+        id: 4,
+        nombre: "Resaltador",
+        categoria: "Oficina",
+        precio: 2500,
+        imagen: "img/Resaltador.jpg",
+        descripcion: "Resaltador azul"
+    },
+
+    {
+        id: 5,
+        nombre: "Carpeta",
+        categoria: "Oficina",
+        precio: 4000,
+        imagen: "img/Carpeta.jpg",
+        descripcion: "Carpeta corporativa"
+    },
+
+    {
+        id: 6,
+        nombre: "Borrador",
+        categoria: "Escolar",
+        precio: 800,
+        imagen: "img/Borrador.png",
+        descripcion: "Borrador escolar"
+    },
+
+    {
+        id: 7,
+        nombre: "Regla",
+        categoria: "Escolar",
+        precio: 1500,
+        imagen: "img/Regla.jpg",
+        descripcion: "Regla 30cm"
+    },
+
+    {
+        id: 8,
+        nombre: "Tijeras",
+        categoria: "Escolar",
+        precio: 3000,
+        imagen: "img/Tijeras.jpg",
+        descripcion: "Tijeras punta roma"
+    },
+
+    {
+        id: 9,
+        nombre: "Marcadores",
+        categoria: "Arte",
+        precio: 8000,
+        imagen: "img/Marcadores.jpg",
+        descripcion: "Set x12"
+    },
+
+    {
+        id: 10,
+        nombre: "Pegante",
+        categoria: "Escolar",
+        precio: 2200,
+        imagen: "img/Pegante.png",
+        descripcion: "Pegante en barra"
+    },
+
+    {
+        id: 11,
+        nombre: "Cartulina",
+        categoria: "Arte",
+        precio: 1200,
+        imagen: "img/Cartulina.jpg",
+        descripcion: "Cartulina blanca"
+    },
+
+    {
+        id: 12,
+        nombre: "Agenda",
+        categoria: "Oficina",
+        precio: 15000,
+        imagen: "img/Agenda.jpg",
+        descripcion: "Agenda 2026"
+    }
+
 ];
 
-let cart = [];
+let carrito = [];
 
-// ====== DOM ======
-const productContainer = document.getElementById("productContainer");
-const cartContainer = document.getElementById("cartContainer");
-const totalSpan = document.getElementById("total");
-const searchInput = document.getElementById("searchInput");
+// DOM
+const contenedorProductos = document.getElementById("productContainer");
+const contenedorCarrito = document.getElementById("cartContainer");
+const totalElemento = document.getElementById("total");
+const campoBusqueda = document.getElementById("searchInput");
 
-// ====== RENDER PRODUCTOS ======
-function renderProducts(list) {
-    productContainer.innerHTML = "";
+// Renderizacion de los productos
+function renderizarProductos(lista) {
+    contenedorProductos.innerHTML = "";
 
-    list.forEach(product => {
-        const card = document.createElement("div");
-        card.classList.add("card");
-        card.classList.add("fade-in"); // ✅ Ahora sí está bien
+    lista.forEach(producto => {
+        const tarjeta = document.createElement("div");
+        tarjeta.classList.add("card", "fade-in");
 
-        card.innerHTML = `
-            <img src="${product.image}">
-            <h3>${product.name}</h3>
-            <p>${product.description}</p>
-            <p>$${product.price}</p>
-            <button data-id="${product.id}">Agregar</button>
+        tarjeta.innerHTML = `
+            <img src="${producto.imagen}">
+            <h3>${producto.nombre}</h3>
+            <p>${producto.descripcion}</p>
+            <p>$${producto.precio}</p>
+            <button data-id="${producto.id}">Agregar</button>
         `;
 
-        productContainer.appendChild(card);
+        contenedorProductos.appendChild(tarjeta);
     });
 }
 
+// Renderizacion del carrito
+function renderizarCarrito() {
+    contenedorCarrito.innerHTML = "";
 
-// ====== RENDER CARRITO ======
-function renderCart() {
-    cartContainer.innerHTML = "";
-
-    if (cart.length === 0) {
-        cartContainer.innerHTML = `<p class="empty">El carrito está vacío</p>`;
-        totalSpan.textContent = 0;
+    if (carrito.length === 0) {
+        contenedorCarrito.innerHTML = `<p class="empty">El carrito está vacío</p>`;
+        totalElemento.textContent = 0;
         return;
     }
 
-    cart.forEach(item => {
-        const div = document.createElement("div");
-        div.classList.add("cart-item");
+    carrito.forEach(item => {
+        const contenedorItem = document.createElement("div");
+        contenedorItem.classList.add("cart-item");
 
-        div.innerHTML = `
-            <span>${item.name}</span>
-            <input type="number" min="1" value="${item.quantity}" data-id="${item.id}">
-            <span>$${item.price * item.quantity}</span>
-            <button data-id="${item.id}">X</button>
+        contenedorItem.innerHTML = `
+            <span>${item.nombre}</span>
+            <input type="number" min="1" value="${item.cantidad}" data-id="${item.id}">
+            <span>$${item.precio * item.cantidad}</span>
+            <button data-id="${item.id}">Eliminar</button>
         `;
 
-        cartContainer.appendChild(div);
+        contenedorCarrito.appendChild(contenedorItem);
     });
 
-    updateTotal();
+    actualizarTotal();
 }
 
-// ====== TOTAL ======
-function updateTotal() {
-    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    totalSpan.textContent = total;
+// Calculamos el total del carrito
+function actualizarTotal() {
+    const total = carrito.reduce((acumulador, item) => acumulador + item.precio * item.cantidad, 0);
+    totalElemento.textContent = total;
 }
 
-// ====== AGREGAR AL CARRITO ======
-function addToCart(id) {
-    const product = products.find(p => p.id === id);
-    const existing = cart.find(p => p.id === id);
+// Agregar producto al carrito
+function agregarAlCarrito(id) {
+    const producto = productos.find(p => p.id === id);
+    const existente = carrito.find(p => p.id === id);
 
-    if (existing) {
-        existing.quantity++;
+    if (existente) {
+        existente.cantidad++;
     } else {
-        cart.push({ ...product, quantity: 1 });
+        carrito.push({ ...producto, cantidad: 1 });
     }
 
-    renderCart();
+    renderizarCarrito();
 
-    // Animación visual del carrito
     document.querySelector(".cart").classList.add("pulse");
 
     setTimeout(() => {
@@ -98,44 +193,45 @@ function addToCart(id) {
     }, 400);
 }
 
-
-// ====== EVENTOS ======
-productContainer.addEventListener("click", e => {
-    if (e.target.tagName === "BUTTON") {
-        const id = parseInt(e.target.dataset.id);
-        addToCart(id);
+// Eventos
+contenedorProductos.addEventListener("click", evento => {
+    if (evento.target.tagName === "BUTTON") {
+        const id = parseInt(evento.target.dataset.id);
+        agregarAlCarrito(id);
     }
 });
 
-cartContainer.addEventListener("input", e => {
-    if (e.target.type === "number") {
-        const id = parseInt(e.target.dataset.id);
-        const item = cart.find(p => p.id === id);
+contenedorCarrito.addEventListener("input", evento => {
+    if (evento.target.type === "number") {
+        const id = parseInt(evento.target.dataset.id);
+        const item = carrito.find(p => p.id === id);
 
-        if (e.target.value < 1) {
-            e.target.value = 1;
+        if (evento.target.value < 1) {
+            evento.target.value = 1;
         }
 
-        item.quantity = parseInt(e.target.value);
-        renderCart();
+        item.cantidad = parseInt(evento.target.value);
+        renderizarCarrito();
     }
 });
 
-cartContainer.addEventListener("click", e => {
-    if (e.target.tagName === "BUTTON") {
-        const id = parseInt(e.target.dataset.id);
-        cart = cart.filter(p => p.id !== id);
-        renderCart();
+contenedorCarrito.addEventListener("click", evento => {
+    if (evento.target.tagName === "BUTTON") {
+        const id = parseInt(evento.target.dataset.id);
+        carrito = carrito.filter(p => p.id !== id);
+        renderizarCarrito();
     }
 });
 
-// ====== BUSQUEDA ======
-searchInput.addEventListener("input", e => {
-    const text = e.target.value.toLowerCase();
-    const filtered = products.filter(p => p.name.toLowerCase().includes(text));
-    renderProducts(filtered);
+// Busqueda de productos
+campoBusqueda.addEventListener("input", evento => {
+    const texto = evento.target.value.toLowerCase();
+    const filtrados = productos.filter(p => 
+        p.nombre.toLowerCase().includes(texto)
+    );
+    renderizarProductos(filtrados);
 });
 
-// ====== INICIALIZACIÓN ======
-renderProducts(products);
-renderCart();
+// Iniciamos la aplicación
+renderizarProductos(productos);
+renderizarCarrito();
