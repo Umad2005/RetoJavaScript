@@ -1,5 +1,5 @@
 # RetoJavaScript
 
-Andres Jacobo Acosta Pulido
-David Castiblanco
-Juan Andres Galarza
+Andres Jacobo Acosta Pulido<br>
+David Castiblanco<br>
+Juan Andres Galarza<br>
